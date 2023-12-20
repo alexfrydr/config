@@ -1,0 +1,21 @@
+- alias: "010_Let's_Encrypt_Renewal"
+  trigger:
+  - platform: time
+    at: '00:00:00'
+  action:
+  - service: hassio.addon_restart
+    data:
+      addon: core_letsencrypt
+  - delay: 00:02:00
+  - service: hassio.addon_restart
+    data:
+      addon: core_nginx_proxy
+      
+# - alias: "010_zigbee2mqtt_restart"
+#   trigger:
+#   - platform: time
+#     at: '00:07:00'
+#   action:
+#   - service: hassio.addon_restart
+#     data:
+#       addon: core_zigbee2mqtt

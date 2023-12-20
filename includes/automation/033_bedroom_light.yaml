@@ -1,0 +1,117 @@
+- alias: "033_light_bedroom_off"
+  trigger:
+  - platform: time
+    at: '09:30:00'
+  condition:
+  - condition: state
+    entity_id: input_boolean.auto_light_bedroom_on_off
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.control_mode
+    state: 'on'
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id:
+            - light.wled_bedroom
+        match: any
+        state: "on"
+  action:
+    - service: light.turn_off
+      entity_id: light.wled_bedroom
+
+- alias: "033_light_bedroom_3%_strip_on_22:00"
+  trigger:
+    - platform: time_pattern
+      minutes: '/10'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.auto_light_bedroom_on_off
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.control_mode
+      state: 'on'
+    - condition: time
+      after: '22:00:00'
+    - condition: state
+      entity_id: light.wled_bedroom
+      state: "on"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.wled_bedroom
+        brightness_pct: 5
+
+- alias: "033_light_bedroom_50%_on"
+  trigger:
+  - platform: time
+    at: input_datetime.light_clock
+  condition:
+  - condition: state
+    entity_id: input_boolean.auto_light_bedroom_on_off
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.control_mode
+    state: 'on'
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id:
+            - light.wled_bedroom
+        match: any
+        state: "off"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.wled_bedroom
+        brightness_pct: 25
+
+# - alias: "033_light_bedroom_autostart"
+#   trigger:
+#     - platform: time_pattern
+#       minutes: '/1'
+#   condition:
+#     - condition: time
+#       after: '21:00:00'
+#       before: '08:00:00'
+#     - condition: state
+#       entity_id: input_boolean.auto_light_bedroom_on_off
+#       state: 'on'
+#     - condition: state
+#       entity_id: input_boolean.control_mode
+#       state: 'on'
+#     - condition: state
+#       entity_id: light.wled_bedroom
+#       state: "off"
+#   action:
+#     - service: light.turn_on
+#       data:
+#         entity_id: light.wled_bedroom
+#         brightness_pct: 5    
+
+- alias: "033_light_bedroom_turn_on_automatic_preset_3"
+  trigger:
+  - platform: state
+    entity_id:
+    - light.wled_bedroom
+    from: 'off'
+    to: 'on'
+  condition: 
+  - condition: state
+    entity_id: input_boolean.auto_light_bedroom_on_off
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.control_mode
+    state: 'on'
+  action:
+  - device_id: 6babadc2f86b41d081ab71bda8f19d6b
+    domain: select
+    entity_id: select.wled_bedroom_preset
+    type: select_option
+    option: Preset 3
+  - service: light.turn_on
+    data:
+      entity_id: light.wled_bedroom
+      brightness_pct: 5
+  mode: single
+  

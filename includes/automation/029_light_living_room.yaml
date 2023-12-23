@@ -19,6 +19,8 @@
   action:
     - service: light.turn_off
       entity_id: light.wled
+    - service: switch.turn_off
+      entity_id: switch.0x00158d0003985898_switch
 
 - alias: "029_light_living_room_3%_22:00"
   trigger:
@@ -67,6 +69,8 @@
       data:
         entity_id: light.wled
         brightness_pct: 50
+    - service: switch.turn_on
+      entity_id: switch.0x00158d0003985898_switch
 
 - alias: "029_light_living_room_turn_on_automatic"
   description: ''

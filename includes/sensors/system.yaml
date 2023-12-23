@@ -1,5 +1,6 @@
 - platform: systemmonitor
   resources:
+  - type: processor_temperature
   - type: processor_use
   - type: disk_use_percent
     arg: /
@@ -8,11 +9,11 @@
   - type: disk_free
     arg: /
 
-- platform: command_line
-  name: CPU Temp
-  command: "cat /sys/class/thermal/thermal_zone2/temp"
-  unit_of_measurement: "°C"
-  value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+# - platform: command_line
+#   name: CPU Temp
+#   command: "cat /sys/class/thermal/thermal_zone2/temp"
+#   unit_of_measurement: "°C"
+#   value_template: '{{ (value | multiply(0.001)) | round(1) }}'
   
 - platform: time_date
   display_options:
@@ -21,6 +22,40 @@
       - 'beat'
       - 'date_time'
 
+# - platform: systemmonitor
+#   resources:
+#   - type: disk_use_percent
+#     arg: /config
+#   - type: disk_use
+#   - type: disk_free
+#   - type: memory_use_percent
+#   - type: memory_use
+#   - type: memory_free
+#   - type: swap_use_percent
+#   - type: swap_use
+#   - type: swap_free
+#   - type: load_1m
+#   - type: load_5m
+#   - type: load_15m
+#   - type: network_in
+#     arg: eth0
+#   - type: network_out
+#     arg: eth0
+#   - type: throughput_network_in
+#     arg: eth0
+#   - type: throughput_network_out
+#     arg: eth0
+#   - type: packets_in
+#     arg: eth0
+#   - type: packets_out
+#     arg: eth0
+#   - type: ipv4_address
+#     arg: eth0
+#   - type: ipv6_address
+#     arg: eth0
+#   - type: processor_use
+#   - type: processor_temperature
+#   - type: last_boot
 
 # - platform: command_line
 #   name: supervisor_updates

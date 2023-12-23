@@ -56,7 +56,7 @@ cards:
                 fill: false
             - type: custom:mini-graph-card
               entities:
-                - entity: sensor.cpu_temp
+                - entity: sensor.processor_temperature
                   name: CPU 
                   hours_to_show: 12
                   points_per_hour: 4

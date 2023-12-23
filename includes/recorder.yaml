@@ -21,7 +21,7 @@ include:
     - sensor.aqara_t_h_refregerator_temperature
     - sensor.termostat_01_position
     - sensor.maria_db_size
-    - sensor.cpu_temp
+    - sensor.processor_temperature
     - sensor.processor_use
     - sensor.memory_use_percent
     - sensor.disk_free

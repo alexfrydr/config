@@ -150,8 +150,9 @@ cards:
       - type: vertical-stack
         cards:
           - type: custom:mushroom-fan-card
-            entity: fan.xiaomi_air_humidifier
-            icon_animation: true
+            name: Balcony light
+            entity: switch.0x00158d0003985898_switch
+            icon_animation: false
             fill_container: false
             show_oscillate_control: false
             collapsible_controls: false
